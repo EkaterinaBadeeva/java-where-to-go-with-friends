@@ -1,0 +1,58 @@
+services:
+  stat-server:
+    build: stat-service/stat-server
+    image: stat-server
+    container_name: stat-server
+    ports:
+      - "9090:9090"
+    depends_on:
+      - stat-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://stat-db:5432/stat-db
+      - SPRING_DATASOURCE_USERNAME=stat-db
+      - SPRING_DATASOURCE_PASSWORD=stat-db
+
+  stat-db:
+    image: postgres:16.1
+    container_name: stat-db
+    ports:
+      - "6541:5432"
+    environment:
+      - POSTGRES_PASSWORD=stat-db
+      - POSTGRES_USER=stat-db
+      - POSTGRES_DB=stat-db
+    healthcheck:
+      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
+      timeout: 5s
+      interval: 5s
+      retries: 10
+
+  wtg-service:
+    build: main-service
+    image: main-service
+    container_name: main-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - wtg-db
+      - stat-server
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://wtg-db:5432/wtg-db
+      - SPRING_DATASOURCE_USERNAME=wtg-db
+      - SPRING_DATASOURCE_PASSWORD=wtg-db
+      - STATS_SERVER_URL=http://stat-server:9090
+
+  wtg-db:
+    image: postgres:16.1
+    container_name: wtg-db
+    ports:
+      - "6542:5432"
+    environment:
+      - POSTGRES_PASSWORD=wtg-db
+      - POSTGRES_USER=wtg-db
+      - POSTGRES_DB=wtg-db
+    healthcheck:
+      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
+      timeout: 5s
+      interval: 5s
+      retries: 10

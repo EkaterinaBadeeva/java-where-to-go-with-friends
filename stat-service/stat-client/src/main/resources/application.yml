@@ -1,0 +1,12 @@
+# ===============================
+# LOGGING CONFIGURATION
+# ===============================
+logging:
+  level:
+    org.springframework.web.client.RestTemplate: DEBUG
+
+# ===============================
+# EXTERNAL SERVICES CONFIGURATION
+# ===============================
+stat-server:
+  url: http://stat-server:9090
