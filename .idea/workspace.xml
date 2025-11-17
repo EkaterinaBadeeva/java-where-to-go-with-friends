@@ -4,30 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5acaee4-ef89-426d-a8b5-b5844afc4796" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/MainServiceWhereToGo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-client/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-client/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-dto/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-dto/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/StatServerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/resources/application.yml" afterDir="false" />
+    <list default="true" id="b5acaee4-ef89-426d-a8b5-b5844afc4796" name="Changes" comment="Подготовить сборку проекта Where To Go With Friends.">
+      <change afterPath="$PROJECT_DIR$/checkstyle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lombok.config" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-client/src/main/java/com/my/pet/project/StatClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-client/src/main/java/com/my/pet/project/exceptions/ClientException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-dto/src/main/java/com/my/pet/project/HitDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-dto/src/main/java/com/my/pet/project/ViewStatsDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-dto/src/main/java/com/my/pet/project/ViewStatsDtoProjection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/controller/HitController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/dao/HitRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/exceptions/CommonException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/exceptions/ErrorHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/exceptions/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/exceptions/NotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/exceptions/ValidationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/mapper/HitMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/model/Hit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/service/HitService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/service/HitServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/resources/schema.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/suppressions.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stat-service/stat-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/StatServerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/StatServerService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +46,25 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;EkaterinaBadeeva&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/EkaterinaBadeeva/java-where-to-go-with-friends.git&quot;,
+    &quot;accountId&quot;: &quot;8be9b9dc-e493-4d42-960a-9e617b10c225&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -60,26 +80,43 @@
     "Application.MainServiceWhereToGo.executor": "Run",
     "Application.StatServerService.executor": "Run",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "Maven.java-where-to-go-with-friends [clean...].executor": "Run",
     "Maven.java-where-to-go-with-friends [clean].executor": "Run",
+    "Maven.java-where-to-go-with-friends [install].executor": "Run",
     "Maven.java-where-to-go-with-friends [package].executor": "Run",
+    "Maven.java-where-to-go-with-friends [verify].executor": "Run",
     "Maven.stat-server [package].executor": "Run",
+    "Maven.stat-service [clean].executor": "Run",
     "Maven.stat-service [package].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "stat__service",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Екатерина/IdeaProjects/java-where-to-go-with-friends",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Екатерина\IdeaProjects\java-where-to-go-with-friends" />
+      <recent name="C:\Users\Екатерина\IdeaProjects\java-where-to-go-with-friends\stat-service\stat-server\src\main\resources" />
+      <recent name="C:\Users\Екатерина\IdeaProjects\java-where-to-go-with-friends\stat-service\stat-server\src\main\java\com\my\pet\project" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Екатерина\IdeaProjects\java-where-to-go-with-friends" />
       <recent name="C:\Users\Екатерина\IdeaProjects\java-where-to-go-with-friends\main-service" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.StatServerService">
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="jar tf target/stat-server-1.0-SNAPSHOT.jar | grep MANIFEST" />
+      <command value="mvn clean package -X" />
+      <command value="mvn clean package" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.my.pet.project.Main" />
       <module name="stat-client" />
@@ -135,8 +172,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StatServerService" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Application.StatServerService" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.MainServiceWhereToGo" />
       </list>
@@ -151,6 +188,19 @@
       <option name="presentableId" value="Default" />
       <updated>1762770887807</updated>
     </task>
+    <task id="LOCAL-00001" summary="Подготовить сборку проекта Where To Go With Friends.">
+      <option name="closed" value="true" />
+      <created>1762957549280</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1762957549280</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Подготовить сборку проекта Where To Go With Friends." />
+    <option name="LAST_COMMIT_MESSAGE" value="Подготовить сборку проекта Where To Go With Friends." />
   </component>
 </project>
