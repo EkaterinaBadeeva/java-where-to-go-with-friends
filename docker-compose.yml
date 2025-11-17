@@ -6,7 +6,8 @@ services:
     ports:
       - "9090:9090"
     depends_on:
-      - stat-db
+      stat-db:
+        condition: service_healthy
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://stat-db:5432/stat-db
       - SPRING_DATASOURCE_USERNAME=stat-db
@@ -22,7 +23,7 @@ services:
       - POSTGRES_USER=stat-db
       - POSTGRES_DB=stat-db
     healthcheck:
-      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
+      test: ["CMD-SHELL", "pg_isready -U stat-db -d stat-db"]
       timeout: 5s
       interval: 5s
       retries: 10
@@ -34,13 +35,15 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - wtg-db
-      - stat-server
+      wtg-db:
+        condition: service_healthy
+      stat-server:
+        condition: service_started
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://wtg-db:5432/wtg-db
       - SPRING_DATASOURCE_USERNAME=wtg-db
       - SPRING_DATASOURCE_PASSWORD=wtg-db
-      - STATS_SERVER_URL=http://stat-server:9090
+      - STAT_SERVER_URL=http://stat-server:9090
 
   wtg-db:
     image: postgres:16.1
@@ -52,7 +55,7 @@ services:
       - POSTGRES_USER=wtg-db
       - POSTGRES_DB=wtg-db
     healthcheck:
-      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
+      test: ["CMD-SHELL", "pg_isready -U wtg-db -d wtg-db"]
       timeout: 5s
       interval: 5s
       retries: 10
