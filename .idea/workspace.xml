@@ -4,33 +4,77 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5acaee4-ef89-426d-a8b5-b5844afc4796" name="Changes" comment="Подготовить сборку проекта Where To Go With Friends.">
-      <change afterPath="$PROJECT_DIR$/checkstyle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lombok.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-client/src/main/java/com/my/pet/project/StatClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-client/src/main/java/com/my/pet/project/exceptions/ClientException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-dto/src/main/java/com/my/pet/project/HitDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-dto/src/main/java/com/my/pet/project/ViewStatsDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-dto/src/main/java/com/my/pet/project/ViewStatsDtoProjection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/controller/HitController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/dao/HitRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/exceptions/CommonException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/exceptions/ErrorHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/exceptions/ErrorResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/exceptions/NotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/exceptions/ValidationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/mapper/HitMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/model/Hit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/service/HitService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/service/HitServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/resources/schema.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/suppressions.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+    <list default="true" id="b5acaee4-ef89-426d-a8b5-b5844afc4796" name="Changes" comment="Реализовать сервис статистики. Реализовать HTTP-клиент для работы с сервисом статистики.">
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/category/controller/AdminCategoryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/category/controller/PublicCategoryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/category/dao/CategoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/category/dto/CategoryDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/category/dto/NewCategoryDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/category/mapper/CategoryMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/category/model/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/category/service/CategoryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/category/service/CategoryServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/compilation/controller/AdminCompilationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/compilation/controller/PublicCompilationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/compilation/dao/CompilationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/compilation/dto/CompilationDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/compilation/dto/NewCompilationDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/compilation/dto/UpdateCompilationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/compilation/mapper/CompilationMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/compilation/model/Compilation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/compilation/service/CompilationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/compilation/service/CompilationServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/config/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/controller/AdminEventController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/controller/PrivateEventController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/controller/PublicEventController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/dao/EventRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/dao/LocationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/dto/EventFullDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/dto/EventRequestStatusUpdateRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/dto/EventRequestStatusUpdateResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/dto/EventShortDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/dto/LocationDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/dto/NewEventDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/dto/UpdateEventAdminRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/dto/UpdateEventUserRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/mapper/EventMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/model/Event.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/model/EventState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/model/Location.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/model/StateAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/service/EventService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/service/EventServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/service/EventSpecifications.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/validator/EventDate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/validator/EventDateValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/exceptions/CommonException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/exceptions/ConflictException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/exceptions/ErrorHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/exceptions/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/exceptions/NotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/exceptions/ValidationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/request/controller/PrivateParticipationRequestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/request/dao/ParticipationRequestRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/request/dto/ParticipationRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/request/mapper/ParticipationRequestMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/request/model/ParticipationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/request/model/ParticipationRequestStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/request/service/ParticipationRequestService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/request/service/ParticipationRequestServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/user/controller/AdminUserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/user/dao/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/user/dto/UserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/user/dto/UserShortDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/user/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/user/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/user/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/user/service/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/resources/schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/StatServerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/StatServerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stat-service/stat-client/src/main/java/com/my/pet/project/StatClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-client/src/main/java/com/my/pet/project/StatClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,32 +118,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.MainServiceWhereToGo.executor": "Run",
-    "Application.StatServerService.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "Maven.java-where-to-go-with-friends [clean...].executor": "Run",
-    "Maven.java-where-to-go-with-friends [clean].executor": "Run",
-    "Maven.java-where-to-go-with-friends [install].executor": "Run",
-    "Maven.java-where-to-go-with-friends [package].executor": "Run",
-    "Maven.java-where-to-go-with-friends [verify].executor": "Run",
-    "Maven.stat-server [package].executor": "Run",
-    "Maven.stat-service [clean].executor": "Run",
-    "Maven.stat-service [package].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "stat__service",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Екатерина/IdeaProjects/java-where-to-go-with-friends",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainServiceWhereToGo.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StatServerService.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.java-where-to-go-with-friends [clean...].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.java-where-to-go-with-friends [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.java-where-to-go-with-friends [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.java-where-to-go-with-friends [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.java-where-to-go-with-friends [verify].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.stat-server [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.stat-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.stat-service [package].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;stat__service&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Екатерина/IdeaProjects/java-where-to-go-with-friends/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Екатерина\IdeaProjects\java-where-to-go-with-friends\main-service\src\main\java\com\my\pet\project\where_to_go_with_friends" />
+      <recent name="C:\Users\Екатерина\IdeaProjects\java-where-to-go-with-friends\main-service\src\main\resources" />
       <recent name="C:\Users\Екатерина\IdeaProjects\java-where-to-go-with-friends" />
       <recent name="C:\Users\Екатерина\IdeaProjects\java-where-to-go-with-friends\stat-service\stat-server\src\main\resources" />
       <recent name="C:\Users\Екатерина\IdeaProjects\java-where-to-go-with-friends\stat-service\stat-server\src\main\java\com\my\pet\project" />
@@ -196,11 +242,20 @@
       <option name="project" value="LOCAL" />
       <updated>1762957549280</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Реализовать сервис статистики. Реализовать HTTP-клиент для работы с сервисом статистики.">
+      <option name="closed" value="true" />
+      <created>1763393431610</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1763393431610</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Подготовить сборку проекта Where To Go With Friends." />
-    <option name="LAST_COMMIT_MESSAGE" value="Подготовить сборку проекта Where To Go With Friends." />
+    <MESSAGE value="Реализовать сервис статистики. Реализовать HTTP-клиент для работы с сервисом статистики." />
+    <option name="LAST_COMMIT_MESSAGE" value="Реализовать сервис статистики. Реализовать HTTP-клиент для работы с сервисом статистики." />
   </component>
 </project>
