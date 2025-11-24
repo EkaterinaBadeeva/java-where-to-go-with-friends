@@ -1,6 +1,6 @@
-package com.my.pet.project;
+package com.my.pet.project.where_to_go_with_friends;
 
-import com.my.pet.project.exceptions.ClientException;
+import com.my.pet.project.where_to_go_with_friends.exceptions.ClientException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -16,7 +16,7 @@ public class StatClient {
     protected final RestTemplate rest;
     private final String uriBase;
 
-    public StatClient(@Value("${stats-server.url}") String uriBase, RestTemplate rest) {
+    public StatClient(@Value("${stat-server.url}") String uriBase, RestTemplate rest) {
         this.rest = rest;
         this.uriBase = uriBase;
     }

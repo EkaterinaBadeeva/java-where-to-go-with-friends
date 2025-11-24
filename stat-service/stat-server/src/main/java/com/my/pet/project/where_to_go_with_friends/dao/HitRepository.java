@@ -1,7 +1,7 @@
-package com.my.pet.project.dao;
+package com.my.pet.project.where_to_go_with_friends.dao;
 
-import com.my.pet.project.ViewStatsDtoProjection;
-import com.my.pet.project.model.Hit;
+import com.my.pet.project.where_to_go_with_friends.ViewStatsDtoProjection;
+import com.my.pet.project.where_to_go_with_friends.model.Hit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,12 +1,12 @@
-package com.my.pet.project.service;
+package com.my.pet.project.where_to_go_with_friends.service;
 
-import com.my.pet.project.HitDto;
-import com.my.pet.project.ViewStatsDto;
-import com.my.pet.project.ViewStatsDtoProjection;
-import com.my.pet.project.dao.HitRepository;
-import com.my.pet.project.exceptions.ValidationException;
-import com.my.pet.project.mapper.HitMapper;
-import com.my.pet.project.model.Hit;
+import com.my.pet.project.where_to_go_with_friends.HitDto;
+import com.my.pet.project.where_to_go_with_friends.ViewStatsDto;
+import com.my.pet.project.where_to_go_with_friends.ViewStatsDtoProjection;
+import com.my.pet.project.where_to_go_with_friends.dao.HitRepository;
+import com.my.pet.project.where_to_go_with_friends.exceptions.ValidationException;
+import com.my.pet.project.where_to_go_with_friends.mapper.HitMapper;
+import com.my.pet.project.where_to_go_with_friends.model.Hit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

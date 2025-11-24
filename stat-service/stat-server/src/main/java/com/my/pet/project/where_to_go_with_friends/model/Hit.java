@@ -1,4 +1,4 @@
-package com.my.pet.project.model;
+package com.my.pet.project.where_to_go_with_friends.model;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

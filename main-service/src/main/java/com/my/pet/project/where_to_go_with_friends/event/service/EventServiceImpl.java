@@ -1,8 +1,8 @@
 package com.my.pet.project.where_to_go_with_friends.event.service;
 
-import com.my.pet.project.HitDto;
-import com.my.pet.project.StatClient;
-import com.my.pet.project.ViewStatsDto;
+import com.my.pet.project.where_to_go_with_friends.HitDto;
+import com.my.pet.project.where_to_go_with_friends.StatClient;
+import com.my.pet.project.where_to_go_with_friends.ViewStatsDto;
 import com.my.pet.project.where_to_go_with_friends.category.dao.CategoryRepository;
 import com.my.pet.project.where_to_go_with_friends.category.model.Category;
 import com.my.pet.project.where_to_go_with_friends.event.dao.EventRepository;

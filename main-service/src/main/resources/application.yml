@@ -25,6 +25,7 @@ spring:
         format_sql: true
         jdbc:
           time_zone: UTC
+    open-in-view: false
 
   # ===============================
   # DATABASE INITIALIZATION

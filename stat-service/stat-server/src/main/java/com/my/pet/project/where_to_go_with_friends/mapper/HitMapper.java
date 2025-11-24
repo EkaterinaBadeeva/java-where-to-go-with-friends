@@ -1,7 +1,7 @@
-package com.my.pet.project.mapper;
+package com.my.pet.project.where_to_go_with_friends.mapper;
 
-import com.my.pet.project.HitDto;
-import com.my.pet.project.model.Hit;
+import com.my.pet.project.where_to_go_with_friends.HitDto;
+import com.my.pet.project.where_to_go_with_friends.model.Hit;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

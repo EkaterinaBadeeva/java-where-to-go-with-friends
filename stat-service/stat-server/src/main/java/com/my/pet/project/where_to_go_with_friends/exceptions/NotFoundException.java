@@ -1,4 +1,4 @@
-package com.my.pet.project.exceptions;
+package com.my.pet.project.where_to_go_with_friends.exceptions;
 
 public class NotFoundException extends RuntimeException {
     public NotFoundException(String message) {

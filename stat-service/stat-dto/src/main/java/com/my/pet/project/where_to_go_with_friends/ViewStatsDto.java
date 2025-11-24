@@ -1,4 +1,4 @@
-package com.my.pet.project;
+package com.my.pet.project.where_to_go_with_friends;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
