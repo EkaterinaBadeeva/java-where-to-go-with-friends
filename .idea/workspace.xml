@@ -4,30 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5acaee4-ef89-426d-a8b5-b5844afc4796" name="Changes" comment="Добавить описание API основного сервиса в Readme.">
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/rating/controller/PrivateRatingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/rating/dao/RatingRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/rating/dto/RatingDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/rating/dto/RatingShortDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/rating/dto/RatingStateResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/rating/mapper/RatingMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/rating/model/Rating.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/rating/model/RatingState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/rating/service/RatingService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/rating/service/RatingServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/dao/EventRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/dao/EventRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/dto/EventFullDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/dto/EventFullDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/dto/EventShortDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/dto/EventShortDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/mapper/EventMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/mapper/EventMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/model/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/model/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/service/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/service/EventServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/service/EventServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/request/dao/ParticipationRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/request/dao/ParticipationRequestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/request/service/ParticipationRequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/request/service/ParticipationRequestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/request/service/ParticipationRequestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/request/service/ParticipationRequestServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/resources/schema.sql" afterDir="false" />
-    </list>
+    <list default="true" id="b5acaee4-ef89-426d-a8b5-b5844afc4796" name="Changes" comment="Разработать и добавить дополнительную функциональность &quot;Рейтинги&quot;." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -210,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763561159617</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Разработать и добавить дополнительную функциональность &quot;Рейтинги&quot;.">
+      <option name="closed" value="true" />
+      <created>1764164302820</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1764164302820</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -265,6 +250,7 @@
     <MESSAGE value="Подготовить сборку проекта Where To Go With Friends." />
     <MESSAGE value="Реализовать сервис статистики. Реализовать HTTP-клиент для работы с сервисом статистики." />
     <MESSAGE value="Реализовать основной сервис." />
-    <option name="LAST_COMMIT_MESSAGE" value="Реализовать основной сервис." />
+    <MESSAGE value="Разработать и добавить дополнительную функциональность &quot;Рейтинги&quot;." />
+    <option name="LAST_COMMIT_MESSAGE" value="Разработать и добавить дополнительную функциональность &quot;Рейтинги&quot;." />
   </component>
 </project>
