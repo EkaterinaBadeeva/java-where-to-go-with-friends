@@ -42,4 +42,11 @@ public class EventShortDto {
 
     //views — количество просмотрев события
     Long views;
+
+    //rating — рейтинг события
+    @Builder.Default
+    int rating = 0;
+
+    //ratingInitiator — рейтинг пользователя
+    int ratingInitiator;
 }

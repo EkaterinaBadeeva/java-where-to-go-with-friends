@@ -1,0 +1,1786 @@
+{
+	"info": {
+		"_postman_id": "6fbd7ee2-2e42-4151-aace-db89371067ac",
+		"name": "Where to go with friends - Ratings",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39599319"
+	},
+	"item": [
+		{
+			"name": "1. Поставить оценку событию (LIKE)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"(async () => {\r",
+							"    const api = new API(pm);\r",
+							"    const rnd = new RandomUtils();\r",
+							"\r",
+							"    try {\r",
+							"        // Создаем пользователей\r",
+							"        // Создаем пользователя участника события\r",
+							"        const user = await api.addUser(rnd.getUser());\r",
+							"        // Создаем пользователя создателя события\r",
+							"        const initiator = await api.addUser(rnd.getUser());\r",
+							"        \r",
+							"        if (!user?.id || !initiator?.id) {\r",
+							"            throw new Error(\"Не удалось создать пользователей\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем категорию\r",
+							"        const category = await api.addCategory(rnd.getCategory());\r",
+							"        if (!category?.id) {\r",
+							"            throw new Error(\"Не удалось создать категорию\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем событие\r",
+							"        let event = await api.addEvent(initiator.id, rnd.getEvent(category.id));\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось создать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Сохраняем id в переменные\r",
+							"        pm.collectionVariables.set(\"user_id\", user.id);\r",
+							"        pm.collectionVariables.set(\"event_id\", event.id);\r",
+							"\r",
+							"        // Публикуем событие \r",
+							"        //(при публикации requestModeration:\"false\", stateAction: \"PUBLISH_EVENT\")\r",
+							"        event = await api.publishEvent(event.id);\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось опубликовать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Отправляем запрос на участие\r",
+							"        const request = await api.publishParticipationRequest(event.id, user.id);\r",
+							"        if (!request?.id) {\r",
+							"            throw new Error(\"Не удалось отправить запрос на участие\");\r",
+							"        }\r",
+							"\r",
+							"        console.log(\"Тестовые данные успешно созданы\");\r",
+							"    } catch (err) {\r",
+							"        console.error(\"Ошибка при подготовке тестовых данных:\", err);\r",
+							"        throw err;\r",
+							"    }\r",
+							"})();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"const target = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Оценка должна содержать поля: event, user, state\", function () {\r",
+							"pm.expect(target).to.have.property('event');\r",
+							"pm.expect(target).to.have.property('user');\r",
+							"pm.expect(target).to.have.property('state');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Должна быть создана оценка событию LIKE\", function () {\r",
+							"    pm.expect(target.id).to.not.be.null;\r",
+							"    pm.expect(\"LIKE\").equal(target.state, 'Должна быть создана оценка событию LIKE');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/users/{{user_id}}/ratings?eventId={{event_id}}&state=LIKE",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"ratings"
+					],
+					"query": [
+						{
+							"key": "eventId",
+							"value": "{{event_id}}"
+						},
+						{
+							"key": "state",
+							"value": "LIKE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Удалить оценку события",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"(async () => {\r",
+							"    const api = new API(pm);\r",
+							"    const rnd = new RandomUtils();\r",
+							"\r",
+							"    try {\r",
+							"        // Создаем пользователей\r",
+							"        // Создаем пользователя участника события\r",
+							"        const user = await api.addUser(rnd.getUser());\r",
+							"        // Создаем пользователя создателя события\r",
+							"        const initiator = await api.addUser(rnd.getUser());\r",
+							"        \r",
+							"        if (!user?.id || !initiator?.id) {\r",
+							"            throw new Error(\"Не удалось создать пользователей\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем категорию\r",
+							"        const category = await api.addCategory(rnd.getCategory());\r",
+							"        if (!category?.id) {\r",
+							"            throw new Error(\"Не удалось создать категорию\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем событие\r",
+							"        let event = await api.addEvent(initiator.id, rnd.getEvent(category.id));\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось создать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Сохраняем id в переменные\r",
+							"        pm.collectionVariables.set(\"user_id\", user.id);\r",
+							"        pm.collectionVariables.set(\"event_id\", event.id);\r",
+							"\r",
+							"        // Публикуем событие \r",
+							"        //(при публикации requestModeration:\"false\", stateAction: \"PUBLISH_EVENT\")\r",
+							"        event = await api.publishEvent(event.id);\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось опубликовать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Отправляем запрос на участие\r",
+							"        const request = await api.publishParticipationRequest(event.id, user.id);\r",
+							"        if (!request?.id) {\r",
+							"            throw new Error(\"Не удалось отправить запрос на участие\");\r",
+							"        }\r",
+							"\r",
+							"        // Ставим оценку событию\r",
+							"        let like = await api.addRating(user.id, event.id);\r",
+							"        if (!like?.state) {\r",
+							"            throw new Error(\"Не удалось поставить оценку событию\");\r",
+							"        }\r",
+							"\r",
+							"        console.log(\"Тестовые данные успешно созданы\");\r",
+							"    } catch (err) {\r",
+							"        console.error(\"Ошибка при подготовке тестовых данных:\", err);\r",
+							"        throw err;\r",
+							"    }\r",
+							"})();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/users/{{user_id}}/ratings?eventId={{event_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"ratings"
+					],
+					"query": [
+						{
+							"key": "eventId",
+							"value": "{{event_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Поставить оценку событию (DISLIKE)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"const target = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Оценка должна содержать поля: event, user, state\", function () {\r",
+							"pm.expect(target).to.have.property('event');\r",
+							"pm.expect(target).to.have.property('user');\r",
+							"pm.expect(target).to.have.property('state');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Должна быть создана оценка событию DISLIKE\", function () {\r",
+							"    pm.expect(target.id).to.not.be.null;\r",
+							"    pm.expect(\"DISLIKE\").equal(target.state, 'Должна быть создана оценка событию DISLIKE');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"(async () => {\r",
+							"    const api = new API(pm);\r",
+							"    const rnd = new RandomUtils();\r",
+							"\r",
+							"    try {\r",
+							"        // Создаем пользователей\r",
+							"        // Создаем пользователя участника события\r",
+							"        const user = await api.addUser(rnd.getUser());\r",
+							"        // Создаем пользователя создателя события\r",
+							"        const initiator = await api.addUser(rnd.getUser());\r",
+							"        \r",
+							"        if (!user?.id || !initiator?.id) {\r",
+							"            throw new Error(\"Не удалось создать пользователей\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем категорию\r",
+							"        const category = await api.addCategory(rnd.getCategory());\r",
+							"        if (!category?.id) {\r",
+							"            throw new Error(\"Не удалось создать категорию\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем событие\r",
+							"        let event = await api.addEvent(initiator.id, rnd.getEvent(category.id));\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось создать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Сохраняем id в переменные\r",
+							"        pm.collectionVariables.set(\"user_id\", user.id);\r",
+							"        pm.collectionVariables.set(\"event_id\", event.id);\r",
+							"\r",
+							"        // Публикуем событие \r",
+							"        //(при публикации requestModeration:\"false\", stateAction: \"PUBLISH_EVENT\")\r",
+							"        event = await api.publishEvent(event.id);\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось опубликовать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Отправляем запрос на участие\r",
+							"        const request = await api.publishParticipationRequest(event.id, user.id);\r",
+							"        if (!request?.id) {\r",
+							"            throw new Error(\"Не удалось отправить запрос на участие\");\r",
+							"        }\r",
+							"\r",
+							"        console.log(\"Тестовые данные успешно созданы\");\r",
+							"    } catch (err) {\r",
+							"        console.error(\"Ошибка при подготовке тестовых данных:\", err);\r",
+							"        throw err;\r",
+							"    }\r",
+							"})();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/users/{{user_id}}/ratings?eventId={{event_id}}&state=DISLIKE",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"ratings"
+					],
+					"query": [
+						{
+							"key": "eventId",
+							"value": "{{event_id}}"
+						},
+						{
+							"key": "state",
+							"value": "DISLIKE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. Обновить оценку события (с LIKE на DISLIKE)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"const target = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Оценка должна содержать поля: event, user, state\", function () {\r",
+							"pm.expect(target).to.have.property('event');\r",
+							"pm.expect(target).to.have.property('user');\r",
+							"pm.expect(target).to.have.property('state');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Должна быть обновлена оценка событию  на LIKE\", function () {\r",
+							"    pm.expect(target.id).to.not.be.null;\r",
+							"    pm.expect(\"DISLIKE\").equal(target.state, 'Должна быть создана оценка событию DISLIKE');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"(async () => {\r",
+							"    const api = new API(pm);\r",
+							"    const rnd = new RandomUtils();\r",
+							"\r",
+							"    try {\r",
+							"        // Создаем пользователей\r",
+							"        // Создаем пользователя участника события\r",
+							"        const user = await api.addUser(rnd.getUser());\r",
+							"        // Создаем пользователя создателя события\r",
+							"        const initiator = await api.addUser(rnd.getUser());\r",
+							"        \r",
+							"        if (!user?.id || !initiator?.id) {\r",
+							"            throw new Error(\"Не удалось создать пользователей\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем категорию\r",
+							"        const category = await api.addCategory(rnd.getCategory());\r",
+							"        if (!category?.id) {\r",
+							"            throw new Error(\"Не удалось создать категорию\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем событие\r",
+							"        let event = await api.addEvent(initiator.id, rnd.getEvent(category.id));\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось создать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Сохраняем id в переменные\r",
+							"        pm.collectionVariables.set(\"user_id\", user.id);\r",
+							"        pm.collectionVariables.set(\"event_id\", event.id);\r",
+							"\r",
+							"        // Публикуем событие \r",
+							"        //(при публикации requestModeration:\"false\", stateAction: \"PUBLISH_EVENT\")\r",
+							"        event = await api.publishEvent(event.id);\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось опубликовать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Отправляем запрос на участие\r",
+							"        const request = await api.publishParticipationRequest(event.id, user.id);\r",
+							"        if (!request?.id) {\r",
+							"            throw new Error(\"Не удалось отправить запрос на участие\");\r",
+							"        }\r",
+							"\r",
+							"        // Ставим оценку событию\r",
+							"        let like = await api.addRating(user.id, event.id);\r",
+							"        if (!like?.state) {\r",
+							"            throw new Error(\"Не удалось поставить оценку событию\");\r",
+							"        }\r",
+							"\r",
+							"        console.log(\"Тестовые данные успешно созданы\");\r",
+							"    } catch (err) {\r",
+							"        console.error(\"Ошибка при подготовке тестовых данных:\", err);\r",
+							"        throw err;\r",
+							"    }\r",
+							"})();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/users/{{user_id}}/ratings?eventId={{event_id}}&state=DISLIKE",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"ratings"
+					],
+					"query": [
+						{
+							"key": "eventId",
+							"value": "{{event_id}}"
+						},
+						{
+							"key": "state",
+							"value": "DISLIKE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. Получить оценки события",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"const target = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Данные в ответе должны содержать поля: event, eventTitle, sumLikes, sumDislikes, rating, likes, dislikes\", function () {\r",
+							"    pm.expect(target).to.have.property('event');\r",
+							"    pm.expect(target).to.have.property('eventTitle');\r",
+							"    pm.expect(target).to.have.property('sumLikes');\r",
+							"    pm.expect(target).to.have.property('sumDislikes');\r",
+							"    pm.expect(target).to.have.property('rating');\r",
+							"    pm.expect(target).to.have.property('likes');\r",
+							"    pm.expect(target).to.have.property('dislikes');\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
+							"    pm.expect(target.rating).to.not.be.null;\r",
+							"\r",
+							"    let eventTitle = pm.collectionVariables.get(\"eventTitle\");\r",
+							"    pm.expect(eventTitle).equal(target.eventTitle, 'Заголовок события должен быть \"'+ eventTitle +'\"');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"(async () => {\r",
+							"    const api = new API(pm);\r",
+							"    const rnd = new RandomUtils();\r",
+							"\r",
+							"    try {\r",
+							"        // Создаем пользователей\r",
+							"        // Создаем пользователя участника события\r",
+							"        const user = await api.addUser(rnd.getUser());\r",
+							"        // Создаем пользователя создателя события\r",
+							"        const initiator = await api.addUser(rnd.getUser());\r",
+							"        \r",
+							"        if (!user?.id || !initiator?.id) {\r",
+							"            throw new Error(\"Не удалось создать пользователей\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем категорию\r",
+							"        const category = await api.addCategory(rnd.getCategory());\r",
+							"        if (!category?.id) {\r",
+							"            throw new Error(\"Не удалось создать категорию\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем событие\r",
+							"        let event = await api.addEvent(initiator.id, rnd.getEvent(category.id));\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось создать событие\");\r",
+							"        }\r",
+							"\r",
+							"\r",
+							"        // Сохраняем id в переменные\r",
+							"        pm.collectionVariables.set(\"initiator_id\", initiator.id);\r",
+							"        pm.collectionVariables.set(\"event_id\", event.id);\r",
+							"        pm.collectionVariables.set(\"eventTitle\", event.title);\r",
+							"\r",
+							"        // Публикуем событие \r",
+							"        //(при публикации requestModeration:\"false\", stateAction: \"PUBLISH_EVENT\")\r",
+							"        event = await api.publishEvent(event.id);\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось опубликовать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Отправляем запрос на участие\r",
+							"        const request = await api.publishParticipationRequest(event.id, user.id);\r",
+							"        if (!request?.id) {\r",
+							"            throw new Error(\"Не удалось отправить запрос на участие\");\r",
+							"        }\r",
+							"\r",
+							"        // Ставим оценку событию\r",
+							"        let like = await api.addRating(user.id, event.id);\r",
+							"        if (!like?.state) {\r",
+							"            throw new Error(\"Не удалось поставить оценку событию\");\r",
+							"        }\r",
+							"\r",
+							"        console.log(\"Тестовые данные успешно созданы\");\r",
+							"    } catch (err) {\r",
+							"        console.error(\"Ошибка при подготовке тестовых данных:\", err);\r",
+							"        throw err;\r",
+							"    }\r",
+							"})();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/users/{{initiator_id}}/ratings?eventId={{event_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{initiator_id}}",
+						"ratings"
+					],
+					"query": [
+						{
+							"key": "eventId",
+							"value": "{{event_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. Получение информации об опубликованном событии по его идентификатору",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+							"    pm.response.to.be.ok;    \r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"const target = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Событие должно содержать поля: id, title, annotation, category, paid, eventDate, initiator, views, confirmedRequests, description, participantLimit, state, createdOn, publishedOn, location, requestModeration\", function () {\r",
+							"pm.expect(target).to.have.property('id');\r",
+							"pm.expect(target).to.have.property('title');\r",
+							"pm.expect(target).to.have.property('annotation');\r",
+							"pm.expect(target).to.have.property('category');\r",
+							"pm.expect(target).to.have.property('paid');\r",
+							"pm.expect(target).to.have.property('eventDate');\r",
+							"pm.expect(target).to.have.property('initiator');\r",
+							"pm.expect(target).to.have.property('views');\r",
+							"pm.expect(target).to.have.property('confirmedRequests');\r",
+							"pm.expect(target).to.have.property('description');\r",
+							"pm.expect(target).to.have.property('participantLimit');\r",
+							"pm.expect(target).to.have.property('state');\r",
+							"pm.expect(target).to.have.property('createdOn');\r",
+							"pm.expect(target).to.have.property('publishedOn');\r",
+							"pm.expect(target).to.have.property('location');\r",
+							"pm.expect(target).to.have.property('requestModeration');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Рейтинги(события и пользователя) должны быть указаны в ответе\", function () {\r",
+							"    pm.expect(10).equal(target.rating, 'Рейтинг события должен быть указан в ответе и равен 10');\r",
+							"    pm.expect(10).equal(target.ratingInitiator, 'Рейтинг пользователя должен быть указан в ответе и равен 10');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"(async () => {\r",
+							"    const api = new API(pm);\r",
+							"    const rnd = new RandomUtils();\r",
+							"\r",
+							"    try {\r",
+							"        // Создаем пользователей\r",
+							"        // Создаем пользователя участника события\r",
+							"        const user = await api.addUser(rnd.getUser());\r",
+							"        // Создаем пользователя создателя события\r",
+							"        const initiator = await api.addUser(rnd.getUser());\r",
+							"        \r",
+							"        if (!user?.id || !initiator?.id) {\r",
+							"            throw new Error(\"Не удалось создать пользователей\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем категорию\r",
+							"        const category = await api.addCategory(rnd.getCategory());\r",
+							"        if (!category?.id) {\r",
+							"            throw new Error(\"Не удалось создать категорию\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем событие\r",
+							"        let event = await api.addEvent(initiator.id, rnd.getEvent(category.id));\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось создать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Сохраняем id в переменные\r",
+							"        pm.collectionVariables.set(\"user_id\", user.id);\r",
+							"        pm.collectionVariables.set(\"event_id\", event.id);\r",
+							"\r",
+							"        // Публикуем событие \r",
+							"        //(при публикации requestModeration:\"false\", stateAction: \"PUBLISH_EVENT\")\r",
+							"        event = await api.publishEvent(event.id);\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось опубликовать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Отправляем запрос на участие\r",
+							"        const request = await api.publishParticipationRequest(event.id, user.id);\r",
+							"        if (!request?.id) {\r",
+							"            throw new Error(\"Не удалось отправить запрос на участие\");\r",
+							"        }\r",
+							"\r",
+							"        // Ставим оценку событию\r",
+							"        let like = await api.addRating(user.id, event.id);\r",
+							"        if (!like?.state) {\r",
+							"            throw new Error(\"Не удалось поставить оценку событию\");\r",
+							"        }\r",
+							"\r",
+							"        console.log(\"Тестовые данные успешно созданы\");\r",
+							"    } catch (err) {\r",
+							"        console.error(\"Ошибка при подготовке тестовых данных:\", err);\r",
+							"        throw err;\r",
+							"    }\r",
+							"})();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/events/{{event_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"events",
+						"{{event_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7. Получение событий с возможностью фильтрации по рейтингу события",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+							"    pm.response.to.be.ok;    \r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"const target = pm.response.json()[0];\r",
+							"\r",
+							"pm.test(\"Событие должно содержать поля: id, title, annotation, category, paid, eventDate, initiator, views, confirmedRequests, rating\", function () {\r",
+							"pm.expect(target).to.have.property('id');\r",
+							"pm.expect(target).to.have.property('title');\r",
+							"pm.expect(target).to.have.property('annotation');\r",
+							"pm.expect(target).to.have.property('category');\r",
+							"pm.expect(target).to.have.property('paid');\r",
+							"pm.expect(target).to.have.property('eventDate');\r",
+							"pm.expect(target).to.have.property('initiator');\r",
+							"pm.expect(target).to.have.property('views');\r",
+							"pm.expect(target).to.have.property('confirmedRequests');\r",
+							"pm.expect(target).to.have.property('rating');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Рейтинги(события и пользователя) должны быть указаны в ответе\", function () {\r",
+							"    pm.expect(10).equal(target.rating, 'Рейтинг события должен быть указан в ответе и равен 10');\r",
+							"    pm.expect(10).equal(target.ratingInitiator, 'Рейтинг пользователя должен быть указан в ответе и равен 10');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"(async () => {\r",
+							"    const api = new API(pm);\r",
+							"    const rnd = new RandomUtils();\r",
+							"\r",
+							"    try {\r",
+							"        // Создаем пользователей\r",
+							"        // Создаем пользователя участника события\r",
+							"        const user = await api.addUser(rnd.getUser());\r",
+							"        // Создаем пользователя создателя события\r",
+							"        const initiator = await api.addUser(rnd.getUser());\r",
+							"        \r",
+							"        if (!user?.id || !initiator?.id) {\r",
+							"            throw new Error(\"Не удалось создать пользователей\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем категорию\r",
+							"        const category = await api.addCategory(rnd.getCategory());\r",
+							"        if (!category?.id) {\r",
+							"            throw new Error(\"Не удалось создать категорию\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем событие\r",
+							"        let event = await api.addEvent(initiator.id, rnd.getEvent(category.id));\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось создать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Сохраняем id в переменные\r",
+							"        pm.collectionVariables.set(\"user_id\", user.id);\r",
+							"        pm.collectionVariables.set(\"event_id\", event.id);\r",
+							"        pm.collectionVariables.set(\"category_id\", category.id);\r",
+							"\r",
+							"        // Публикуем событие \r",
+							"        //(при публикации requestModeration:\"false\", stateAction: \"PUBLISH_EVENT\")\r",
+							"        event = await api.publishEvent(event.id);\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось опубликовать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Отправляем запрос на участие\r",
+							"        const request = await api.publishParticipationRequest(event.id, user.id);\r",
+							"        if (!request?.id) {\r",
+							"            throw new Error(\"Не удалось отправить запрос на участие\");\r",
+							"        }\r",
+							"\r",
+							"        // Ставим оценку событию\r",
+							"        let like = await api.addRating(user.id, event.id);\r",
+							"        if (!like?.state) {\r",
+							"            throw new Error(\"Не удалось поставить оценку событию\");\r",
+							"        }\r",
+							"\r",
+							"        console.log(\"Тестовые данные успешно созданы\");\r",
+							"    } catch (err) {\r",
+							"        console.error(\"Ошибка при подготовке тестовых данных:\", err);\r",
+							"        throw err;\r",
+							"    }\r",
+							"})();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/events?categories={{category_id}}&rangeStart=2024-03-10%2014%3A30%3A00&rangeEnd=2028-03-10%2014%3A30%3A00&sort=RATING&from=0&size=10",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"events"
+					],
+					"query": [
+						{
+							"key": "categories",
+							"value": "{{category_id}}"
+						},
+						{
+							"key": "rangeStart",
+							"value": "2024-03-10%2014%3A30%3A00"
+						},
+						{
+							"key": "rangeEnd",
+							"value": "2028-03-10%2014%3A30%3A00"
+						},
+						{
+							"key": "sort",
+							"value": "RATING"
+						},
+						{
+							"key": "from",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8. Получение событий с возможностью фильтрации по рейтингу пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+							"    pm.response.to.be.ok;    \r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"const target = pm.response.json()[0];\r",
+							"\r",
+							"pm.test(\"Событие должно содержать поля: id, title, annotation, category, paid, eventDate, initiator, views, confirmedRequests, rating\", function () {\r",
+							"pm.expect(target).to.have.property('id');\r",
+							"pm.expect(target).to.have.property('title');\r",
+							"pm.expect(target).to.have.property('annotation');\r",
+							"pm.expect(target).to.have.property('category');\r",
+							"pm.expect(target).to.have.property('paid');\r",
+							"pm.expect(target).to.have.property('eventDate');\r",
+							"pm.expect(target).to.have.property('initiator');\r",
+							"pm.expect(target).to.have.property('views');\r",
+							"pm.expect(target).to.have.property('confirmedRequests');\r",
+							"pm.expect(target).to.have.property('rating');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Рейтинги(события и пользователя) должны быть указаны в ответе\", function () {\r",
+							"    pm.expect(10).equal(target.rating, 'Рейтинг события должен быть указан в ответе и равен 10');\r",
+							"    pm.expect(10).equal(target.ratingInitiator, 'Рейтинг пользователя должен быть указан в ответе и равен 10');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"(async () => {\r",
+							"    const api = new API(pm);\r",
+							"    const rnd = new RandomUtils();\r",
+							"\r",
+							"    try {\r",
+							"        // Создаем пользователей\r",
+							"        // Создаем пользователя участника события\r",
+							"        const user = await api.addUser(rnd.getUser());\r",
+							"        // Создаем пользователя создателя события\r",
+							"        const initiator = await api.addUser(rnd.getUser());\r",
+							"        \r",
+							"        if (!user?.id || !initiator?.id) {\r",
+							"            throw new Error(\"Не удалось создать пользователей\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем категорию\r",
+							"        const category = await api.addCategory(rnd.getCategory());\r",
+							"        if (!category?.id) {\r",
+							"            throw new Error(\"Не удалось создать категорию\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем событие\r",
+							"        let event = await api.addEvent(initiator.id, rnd.getEvent(category.id));\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось создать событие\");\r",
+							"        }\r",
+							"        \r",
+							"        // Сохраняем id в переменные\r",
+							"        pm.collectionVariables.set(\"user_id\", user.id);\r",
+							"        pm.collectionVariables.set(\"event_id\", event.id);\r",
+							"        pm.collectionVariables.set(\"category_id\", category.id);\r",
+							"\r",
+							"        // Публикуем событие \r",
+							"        //(при публикации requestModeration:\"false\", stateAction: \"PUBLISH_EVENT\")\r",
+							"        event = await api.publishEvent(event.id);\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось опубликовать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Отправляем запрос на участие\r",
+							"        const request = await api.publishParticipationRequest(event.id, user.id);\r",
+							"        if (!request?.id) {\r",
+							"            throw new Error(\"Не удалось отправить запрос на участие\");\r",
+							"        }\r",
+							"\r",
+							"        // Ставим оценку событию\r",
+							"        let like = await api.addRating(user.id, event.id);\r",
+							"        if (!like?.state) {\r",
+							"            throw new Error(\"Не удалось поставить оценку событию\");\r",
+							"        }\r",
+							"\r",
+							"        console.log(\"Тестовые данные успешно созданы\");\r",
+							"    } catch (err) {\r",
+							"        console.error(\"Ошибка при подготовке тестовых данных:\", err);\r",
+							"        throw err;\r",
+							"    }\r",
+							"})();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/events?categories={{category_id}}&rangeStart=2024-03-10%2014%3A30%3A00&rangeEnd=2028-03-10%2014%3A30%3A00&sort=RATING_USER&from=0&size=10",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"events"
+					],
+					"query": [
+						{
+							"key": "categories",
+							"value": "{{category_id}}"
+						},
+						{
+							"key": "rangeStart",
+							"value": "2024-03-10%2014%3A30%3A00"
+						},
+						{
+							"key": "rangeEnd",
+							"value": "2028-03-10%2014%3A30%3A00"
+						},
+						{
+							"key": "sort",
+							"value": "RATING_USER"
+						},
+						{
+							"key": "from",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9. Получение полной информации о событии добавленном текущим пользователем",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+							"    pm.response.to.be.ok;    \r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"const target = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Событие должно содержать поля: id, title, annotation, category, paid, eventDate, initiator, views, confirmedRequests, description, participantLimit, state, createdOn, publishedOn, location, requestModeration\", function () {\r",
+							"pm.expect(target).to.have.property('id');\r",
+							"pm.expect(target).to.have.property('title');\r",
+							"pm.expect(target).to.have.property('annotation');\r",
+							"pm.expect(target).to.have.property('category');\r",
+							"pm.expect(target).to.have.property('paid');\r",
+							"pm.expect(target).to.have.property('eventDate');\r",
+							"pm.expect(target).to.have.property('initiator');\r",
+							"pm.expect(target).to.have.property('views');\r",
+							"pm.expect(target).to.have.property('confirmedRequests');\r",
+							"pm.expect(target).to.have.property('description');\r",
+							"pm.expect(target).to.have.property('participantLimit');\r",
+							"pm.expect(target).to.have.property('state');\r",
+							"pm.expect(target).to.have.property('createdOn');\r",
+							"pm.expect(target).to.have.property('publishedOn');\r",
+							"pm.expect(target).to.have.property('location');\r",
+							"pm.expect(target).to.have.property('requestModeration');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Рейтинги(события и пользователя) должны быть указаны в ответе\", function () {\r",
+							"    pm.expect(10).equal(target.rating, 'Рейтинг события должен быть указан в ответе и равен 10');\r",
+							"    pm.expect(10).equal(target.ratingInitiator, 'Рейтинг пользователя должен быть указан в ответе и равен 10');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"(async () => {\r",
+							"    const api = new API(pm);\r",
+							"    const rnd = new RandomUtils();\r",
+							"\r",
+							"    try {\r",
+							"        // Создаем пользователей\r",
+							"        // Создаем пользователя участника события\r",
+							"        const user = await api.addUser(rnd.getUser());\r",
+							"        // Создаем пользователя создателя события\r",
+							"        const initiator = await api.addUser(rnd.getUser());\r",
+							"        \r",
+							"        if (!user?.id || !initiator?.id) {\r",
+							"            throw new Error(\"Не удалось создать пользователей\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем категорию\r",
+							"        const category = await api.addCategory(rnd.getCategory());\r",
+							"        if (!category?.id) {\r",
+							"            throw new Error(\"Не удалось создать категорию\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем событие\r",
+							"        let event = await api.addEvent(initiator.id, rnd.getEvent(category.id));\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось создать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Сохраняем id в переменные\r",
+							"        pm.collectionVariables.set(\"user_id\", user.id);\r",
+							"        pm.collectionVariables.set(\"event_id\", event.id);\r",
+							"        pm.collectionVariables.set(\"initiator_id\", initiator.id);\r",
+							"\r",
+							"        // Публикуем событие \r",
+							"        //(при публикации requestModeration:\"false\", stateAction: \"PUBLISH_EVENT\")\r",
+							"        event = await api.publishEvent(event.id);\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось опубликовать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Отправляем запрос на участие\r",
+							"        const request = await api.publishParticipationRequest(event.id, user.id);\r",
+							"        if (!request?.id) {\r",
+							"            throw new Error(\"Не удалось отправить запрос на участие\");\r",
+							"        }\r",
+							"\r",
+							"        // Ставим оценку событию\r",
+							"        let like = await api.addRating(user.id, event.id);\r",
+							"        if (!like?.state) {\r",
+							"            throw new Error(\"Не удалось поставить оценку событию\");\r",
+							"        }\r",
+							"\r",
+							"        console.log(\"Тестовые данные успешно созданы\");\r",
+							"    } catch (err) {\r",
+							"        console.error(\"Ошибка при подготовке тестовых данных:\", err);\r",
+							"        throw err;\r",
+							"    }\r",
+							"})();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/users/{{initiator_id}}/events/{{event_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{initiator_id}}",
+						"events",
+						"{{event_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10. Попытка оценить несуществующее событие",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Событие с id = 999999 не существует\", function() {\r",
+							"  pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"(async () => {\r",
+							"    const api = new API(pm);\r",
+							"    const rnd = new RandomUtils();\r",
+							"\r",
+							"    try {\r",
+							"        // Создаем пользователей\r",
+							"        // Создаем пользователя участника события\r",
+							"        const user = await api.addUser(rnd.getUser());\r",
+							"        // Создаем пользователя создателя события\r",
+							"        const initiator = await api.addUser(rnd.getUser());\r",
+							"        \r",
+							"        if (!user?.id || !initiator?.id) {\r",
+							"            throw new Error(\"Не удалось создать пользователей\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем категорию\r",
+							"        const category = await api.addCategory(rnd.getCategory());\r",
+							"        if (!category?.id) {\r",
+							"            throw new Error(\"Не удалось создать категорию\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем событие\r",
+							"        let event = await api.addEvent(initiator.id, rnd.getEvent(category.id));\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось создать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Сохраняем id в переменные\r",
+							"        pm.collectionVariables.set(\"user_id\", user.id);\r",
+							"        pm.collectionVariables.set(\"event_id\", event.id);\r",
+							"\r",
+							"        // Публикуем событие \r",
+							"        //(при публикации requestModeration:\"false\", stateAction: \"PUBLISH_EVENT\")\r",
+							"        event = await api.publishEvent(event.id);\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось опубликовать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Отправляем запрос на участие\r",
+							"        const request = await api.publishParticipationRequest(event.id, user.id);\r",
+							"        if (!request?.id) {\r",
+							"            throw new Error(\"Не удалось отправить запрос на участие\");\r",
+							"        }\r",
+							"\r",
+							"        console.log(\"Тестовые данные успешно созданы\");\r",
+							"    } catch (err) {\r",
+							"        console.error(\"Ошибка при подготовке тестовых данных:\", err);\r",
+							"        throw err;\r",
+							"    }\r",
+							"})();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/users/{{user_id}}/ratings?eventId=999999&state=LIKE",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"ratings"
+					],
+					"query": [
+						{
+							"key": "eventId",
+							"value": "999999"
+						},
+						{
+							"key": "state",
+							"value": "LIKE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "11. Попытка поставить оценку неопубликованному событию",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Невозможно поставить оценку неопубликованному событию\", function() {\r",
+							"  pm.response.to.have.status(409);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"(async () => {\r",
+							"    const api = new API(pm);\r",
+							"    const rnd = new RandomUtils();\r",
+							"\r",
+							"    try {\r",
+							"        // Создаем пользователей\r",
+							"        // Создаем пользователя участника события\r",
+							"        const user = await api.addUser(rnd.getUser());\r",
+							"        // Создаем пользователя создателя события\r",
+							"        const initiator = await api.addUser(rnd.getUser());\r",
+							"        \r",
+							"        if (!user?.id || !initiator?.id) {\r",
+							"            throw new Error(\"Не удалось создать пользователей\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем категорию\r",
+							"        const category = await api.addCategory(rnd.getCategory());\r",
+							"        if (!category?.id) {\r",
+							"            throw new Error(\"Не удалось создать категорию\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем событие\r",
+							"        let event = await api.addEvent(initiator.id, rnd.getEvent(category.id));\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось создать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Сохраняем id в переменные\r",
+							"        pm.collectionVariables.set(\"user_id\", user.id);\r",
+							"        pm.collectionVariables.set(\"eventNotPublised_id\", event.id);\r",
+							"\r",
+							"        console.log(\"Тестовые данные успешно созданы\");\r",
+							"    } catch (err) {\r",
+							"        console.error(\"Ошибка при подготовке тестовых данных:\", err);\r",
+							"        throw err;\r",
+							"    }\r",
+							"})();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/users/{{user_id}}/ratings?eventId={{eventNotPublised_id}}&state=LIKE",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"ratings"
+					],
+					"query": [
+						{
+							"key": "eventId",
+							"value": "{{eventNotPublised_id}}"
+						},
+						{
+							"key": "state",
+							"value": "LIKE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "12. Попытка поставить оценку своему событию",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Инициатор события не может поставить оценку своёму событию\", function() {\r",
+							"  pm.response.to.have.status(409);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"(async () => {\r",
+							"    const api = new API(pm);\r",
+							"    const rnd = new RandomUtils();\r",
+							"\r",
+							"    try {\r",
+							"        // Создаем пользователей\r",
+							"        // Создаем пользователя участника события\r",
+							"        const user = await api.addUser(rnd.getUser());\r",
+							"        // Создаем пользователя создателя события\r",
+							"        const initiator = await api.addUser(rnd.getUser());\r",
+							"        \r",
+							"        if (!user?.id || !initiator?.id) {\r",
+							"            throw new Error(\"Не удалось создать пользователей\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем категорию\r",
+							"        const category = await api.addCategory(rnd.getCategory());\r",
+							"        if (!category?.id) {\r",
+							"            throw new Error(\"Не удалось создать категорию\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем событие\r",
+							"        let event = await api.addEvent(initiator.id, rnd.getEvent(category.id));\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось создать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Сохраняем id в переменные\r",
+							"        pm.collectionVariables.set(\"initiator_id\", initiator.id);\r",
+							"        pm.collectionVariables.set(\"event_id\", event.id);\r",
+							"\r",
+							"        // Публикуем событие \r",
+							"        //(при публикации requestModeration:\"false\", stateAction: \"PUBLISH_EVENT\")\r",
+							"        event = await api.publishEvent(event.id);\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось опубликовать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Отправляем запрос на участие\r",
+							"        const request = await api.publishParticipationRequest(event.id, user.id);\r",
+							"        if (!request?.id) {\r",
+							"            throw new Error(\"Не удалось отправить запрос на участие\");\r",
+							"        }\r",
+							"\r",
+							"        console.log(\"Тестовые данные успешно созданы\");\r",
+							"    } catch (err) {\r",
+							"        console.error(\"Ошибка при подготовке тестовых данных:\", err);\r",
+							"        throw err;\r",
+							"    }\r",
+							"})();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/users/{{initiator_id}}/ratings?eventId={{event_id}}&state=LIKE",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{initiator_id}}",
+						"ratings"
+					],
+					"query": [
+						{
+							"key": "eventId",
+							"value": "{{event_id}}"
+						},
+						{
+							"key": "state",
+							"value": "LIKE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "13. Попытка поставить оценку событию, в котором пользователь не участвовал",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Оценку возможно поставить только если пользователь участвовал в событии\", function() {\r",
+							"  pm.response.to.have.status(409);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"(async () => {\r",
+							"    const api = new API(pm);\r",
+							"    const rnd = new RandomUtils();\r",
+							"\r",
+							"    try {\r",
+							"        // Создаем пользователей\r",
+							"        // Создаем пользователя участника события\r",
+							"        const user = await api.addUser(rnd.getUser());\r",
+							"        // Создаем пользователя создателя события\r",
+							"        const initiator = await api.addUser(rnd.getUser());\r",
+							"        \r",
+							"        if (!user?.id || !initiator?.id) {\r",
+							"            throw new Error(\"Не удалось создать пользователей\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем категорию\r",
+							"        const category = await api.addCategory(rnd.getCategory());\r",
+							"        if (!category?.id) {\r",
+							"            throw new Error(\"Не удалось создать категорию\");\r",
+							"        }\r",
+							"\r",
+							"        // Создаем событие\r",
+							"        let event = await api.addEvent(initiator.id, rnd.getEvent(category.id));\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось создать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // Сохраняем id в переменные\r",
+							"        pm.collectionVariables.set(\"userNotParticipant_id\", user.id);\r",
+							"        pm.collectionVariables.set(\"event_id\", event.id);\r",
+							"\r",
+							"        // Публикуем событие \r",
+							"        //(при публикации requestModeration:\"false\", stateAction: \"PUBLISH_EVENT\")\r",
+							"        event = await api.publishEvent(event.id);\r",
+							"        if (!event?.id) {\r",
+							"            throw new Error(\"Не удалось опубликовать событие\");\r",
+							"        }\r",
+							"\r",
+							"        // // Отправляем запрос на участие\r",
+							"        // const request = await api.publishParticipationRequest(event.id, user.id);\r",
+							"        // if (!request?.id) {\r",
+							"        //     throw new Error(\"Не удалось отправить запрос на участие\");\r",
+							"        // }\r",
+							"\r",
+							"        console.log(\"Тестовые данные успешно созданы\");\r",
+							"    } catch (err) {\r",
+							"        console.error(\"Ошибка при подготовке тестовых данных:\", err);\r",
+							"        throw err;\r",
+							"    }\r",
+							"})();\r",
+							"pm.environment.set(\"requestTimeout\", 10000);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/users/{{userNotParticipant_id}}/ratings?eventId={{event_id}}&state=LIKE",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{userNotParticipant_id}}",
+						"ratings"
+					],
+					"query": [
+						{
+							"key": "eventId",
+							"value": "{{event_id}}"
+						},
+						{
+							"key": "state",
+							"value": "LIKE"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"API = class {\r",
+					"    constructor(postman, verbose = false, baseUrl = \"http://localhost:8080\") {\r",
+					"        this.baseUrl = baseUrl;\r",
+					"        this.pm = postman;\r",
+					"        this._verbose = verbose;\r",
+					"    }\r",
+					"\r",
+					"    async addUser(user, verbose=null) {\r",
+					"        return this.post(\"/admin/users\", user, \"Ошибка при добавлении нового пользователя: \", verbose);\r",
+					"    }\r",
+					"\r",
+					"    async addCategory(category, verbose=null) {\r",
+					"        return this.post(\"/admin/categories\", category, \"Ошибка при добавлении новой категории: \", verbose);\r",
+					"    }\r",
+					"\r",
+					"    async addEvent(userId, event, verbose=null) {\r",
+					"        return this.post(\"/users/\" + userId + \"/events\", event, \"Ошибка при добавлении нового события: \", verbose);\r",
+					"    }\r",
+					"\r",
+					"    async publishParticipationRequest(eventId, userId, verbose=null) {\r",
+					"        return this.post('/users/' + userId + '/requests?eventId=' + eventId, null, \"Ошибка при добавлении нового запроса на участие в событии\", verbose);\r",
+					"    }\r",
+					"\r",
+					"    async acceptParticipationRequest(eventId, userId, reqId, verbose=null) {\r",
+					"        return this.patch('/users/' + userId + '/events/' + eventId + '/requests', {requestIds:[reqId], status: \"CONFIRMED\"}, \"Ошибка при принятии заявки на участие в событии\", verbose);\r",
+					"    }\r",
+					"\r",
+					"    async publishEvent(eventId, verbose=null) {\r",
+					"        return this.patch('/admin/events/' + eventId, {requestModeration:\"false\", stateAction: \"PUBLISH_EVENT\"}, \"Ошибка при публикации события\", verbose);\r",
+					"    }\r",
+					"\r",
+					"    async findCategory(catId, verbose=null) {\r",
+					"        return this.get('/categories/' + catId, null, \"Ошибка при поиске категории по id\", verbose);\r",
+					"    }\r",
+					"\r",
+					"    async findEvent(eventId, verbose=null) {\r",
+					"        return this.get('/events/' + eventId, null, \"Ошибка при поиске события по id\", verbose);\r",
+					"    }\r",
+					"\r",
+					"    async findUser(userId, verbose=null) {\r",
+					"        return this.get('/admin/users?ids=' + userId, null, \"Ошибка при поиске пользователя по id\", verbose);\r",
+					"    }\r",
+					"\r",
+					"    async addRating(userId, eventId, verbose=null) {\r",
+					"        return this.post(\"/users/\" + userId + \"/ratings?eventId=\" + eventId + \"&state=LIKE\", \"Ошибка при добавлении новой подборки: \", verbose);\r",
+					"    }\r",
+					"\r",
+					"    async post(path, body, errorText = \"Ошибка при выполнении post-запроса: \", verbose=null) {\r",
+					"        return this.sendRequest(\"POST\", path, body, errorText, verbose);\r",
+					"    }\r",
+					"\r",
+					"    async patch(path, body = null, errorText = \"Ошибка при выполнении patch-запроса: \", verbose=null) {\r",
+					"        return this.sendRequest(\"PATCH\", path, body, errorText, verbose);\r",
+					"    }\r",
+					"\r",
+					"    async get(path, body = null, errorText = \"Ошибка при выполнении get-запроса: \", verbose=null) {\r",
+					"        return this.sendRequest(\"GET\", path, body, errorText, verbose);\r",
+					"    }\r",
+					"    \r",
+					"    async sendRequest(method, path, body=null, errorText = \"Ошибка при выполнении запроса: \", verbose=null) {\r",
+					"        return new Promise((resolve, reject) => {\r",
+					"            verbose = verbose == null ? this._verbose : verbose;\r",
+					"            const request = {\r",
+					"                url: this.baseUrl + path,\r",
+					"                method: method,\r",
+					"                body: body == null ? \"\" : JSON.stringify(body),\r",
+					"                header: { \"Content-Type\": \"application/json\" },\r",
+					"            };\r",
+					"            if(verbose) {\r",
+					"                console.log(\"Отправляю запрос: \", request);\r",
+					"            }\r",
+					"\r",
+					"            try {\r",
+					"                this.pm.sendRequest(request, (error, response) => {\r",
+					"                    if(error || (response.code >= 400 && response.code <= 599)) {\r",
+					"                        let err = error ? error : JSON.stringify(response.json());\r",
+					"                        console.error(\"При выполнении запроса к серверу возникла ошика.\\n\", err,\r",
+					"                             \"\\nДля отладки проблемы повторите такой же запрос к вашей программе \" + \r",
+					"                             \"на локальном компьютере. Данные запроса:\\n\", JSON.stringify(request));\r",
+					"\r",
+					"                        reject(new Error(errorText + err));\r",
+					"                    }\r",
+					"                    if(verbose) {\r",
+					"                        console.log(\"Результат обработки запроса: код состояния - \", response.code, \", тело: \", response.json());\r",
+					"                    }\r",
+					"                    if (response.stream.length === 0){\r",
+					"                        reject(new Error('Отправлено пустое тело ответа'))\r",
+					"                    }else{\r",
+					"                        resolve(response.json());\r",
+					"                    }\r",
+					"                });\r",
+					"                \r",
+					"            } catch(err) {\r",
+					"                if(verbose) {\r",
+					"                    console.error(errorText, err);\r",
+					"                }\r",
+					"                return Promise.reject(err);\r",
+					"            }\r",
+					"        });\r",
+					"    }\r",
+					"};\r",
+					"\r",
+					"RandomUtils = class {\r",
+					"    constructor() {}\r",
+					"\r",
+					"    getUser() {\r",
+					"        return {\r",
+					"            name: pm.variables.replaceIn('{{$randomFullName}}'),\r",
+					"            email: pm.variables.replaceIn('{{$randomEmail}}')\r",
+					"        };\r",
+					"    }\r",
+					"\r",
+					"    getCategory() {\r",
+					"        return {\r",
+					"            name: pm.variables.replaceIn('{{$randomWord}}') + Math.floor(Math.random() * 10000 * Math.random()).toString()\r",
+					"        };\r",
+					"    }\r",
+					"\r",
+					"    getEvent(categoryId) {\r",
+					"        return {\r",
+					"            annotation: pm.variables.replaceIn('{{$randomLoremParagraph}}'),\r",
+					"            category: categoryId,\r",
+					"            description: pm.variables.replaceIn('{{$randomLoremParagraphs}}'),\r",
+					"            eventDate: this.getFutureDateTime(),\r",
+					"            location: {\r",
+					"                lat: parseFloat(pm.variables.replaceIn('{{$randomLatitude}}')),\r",
+					"                lon: parseFloat(pm.variables.replaceIn('{{$randomLongitude}}')),\r",
+					"            },\r",
+					"            paid: pm.variables.replaceIn('{{$randomBoolean}}'),\r",
+					"            participantLimit: pm.variables.replaceIn('{{$randomInt}}'),\r",
+					"            requestModeration: pm.variables.replaceIn('{{$randomBoolean}}'),\r",
+					"            title: pm.variables.replaceIn('{{$randomLoremSentence}}'),\r",
+					"        }\r",
+					"    }\r",
+					"\r",
+					"    getFutureDateTime(hourShift = 5, minuteShift=0, yearShift=0) {\r",
+					"        let moment = require('moment');\r",
+					"\r",
+					"        let m = moment();\r",
+					"        m.add(hourShift, 'hour');\r",
+					"        m.add(minuteShift, 'minute');\r",
+					"        m.add(yearShift, 'year');\r",
+					"\r",
+					"        return m.format('YYYY-MM-DD HH:mm:ss');\r",
+					"    }\r",
+					"\r",
+					"    getWord(length = 1) {\r",
+					"        let result = '';\r",
+					"        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';\r",
+					"        const charactersLength = characters.length;\r",
+					"        let counter = 0;\r",
+					"        while (counter < length) {\r",
+					"            result += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+					"            counter += 1;\r",
+					"        }\r",
+					"        return result;\r",
+					"    }\r",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "initiator_id",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "user_id",
+			"value": "2",
+			"type": "string"
+		},
+		{
+			"key": "userNotParticipant_id",
+			"value": "3",
+			"type": "string"
+		},
+		{
+			"key": "event_id",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "eventNotPublised_id",
+			"value": "2",
+			"type": "string"
+		},
+		{
+			"key": "request_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "eventTitle",
+			"value": ""
+		},
+		{
+			"key": "category_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

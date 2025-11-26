@@ -34,6 +34,8 @@ public class EventMapper {
                 .state(event.getState())
                 .title(event.getTitle())
                 .views(event.getViews())
+                .rating(event.getRating())
+                .ratingInitiator(event.getRatingInitiator())
                 .build();
     }
 
@@ -79,6 +81,8 @@ public class EventMapper {
                 .paid(event.getPaid())
                 .title(event.getTitle())
                 .views(event.getViews())
+                .rating(event.getRating())
+                .ratingInitiator(event.getRatingInitiator())
                 .build();
     }
 }

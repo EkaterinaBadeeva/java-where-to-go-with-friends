@@ -4,31 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5acaee4-ef89-426d-a8b5-b5844afc4796" name="Changes" comment="Добавить описание API основного сервиса в Readme.">
-      <change afterPath="$PROJECT_DIR$/Where to go with friends- API Main service.postman_collection.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Where to go with friends- API статистика.postman_collection.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/service/EventServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends/event/service/EventServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-client/src/main/java/com/my/pet/project/StatClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-client/src/main/java/com/my/pet/project/where_to_go_with_friends/StatClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-client/src/main/java/com/my/pet/project/exceptions/ClientException.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-client/src/main/java/com/my/pet/project/where_to_go_with_friends/exceptions/ClientException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-dto/src/main/java/com/my/pet/project/HitDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-dto/src/main/java/com/my/pet/project/where_to_go_with_friends/HitDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-dto/src/main/java/com/my/pet/project/ViewStatsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-dto/src/main/java/com/my/pet/project/where_to_go_with_friends/ViewStatsDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-dto/src/main/java/com/my/pet/project/ViewStatsDtoProjection.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-dto/src/main/java/com/my/pet/project/where_to_go_with_friends/ViewStatsDtoProjection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/StatServerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/where_to_go_with_friends/StatServerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/controller/HitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/where_to_go_with_friends/controller/HitController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/dao/HitRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/where_to_go_with_friends/dao/HitRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/exceptions/CommonException.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/where_to_go_with_friends/exceptions/CommonException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/exceptions/ErrorHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/where_to_go_with_friends/exceptions/ErrorHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/exceptions/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/where_to_go_with_friends/exceptions/ErrorResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/exceptions/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/where_to_go_with_friends/exceptions/NotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/exceptions/ValidationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/where_to_go_with_friends/exceptions/ValidationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/mapper/HitMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/where_to_go_with_friends/mapper/HitMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/model/Hit.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/where_to_go_with_friends/model/Hit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/service/HitService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/where_to_go_with_friends/service/HitService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/service/HitServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/stat-service/stat-server/src/main/java/com/my/pet/project/where_to_go_with_friends/service/HitServiceImpl.java" afterDir="false" />
-    </list>
+    <list default="true" id="b5acaee4-ef89-426d-a8b5-b5844afc4796" name="Changes" comment="Разработать и добавить дополнительную функциональность &quot;Рейтинги&quot;." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,34 +47,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.MainServiceWhereToGo.executor": "Run",
-    "Application.StatServerService.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "Maven.java-where-to-go-with-friends [clean...].executor": "Run",
-    "Maven.java-where-to-go-with-friends [clean].executor": "Run",
-    "Maven.java-where-to-go-with-friends [install].executor": "Run",
-    "Maven.java-where-to-go-with-friends [package].executor": "Run",
-    "Maven.java-where-to-go-with-friends [verify].executor": "Run",
-    "Maven.stat-server [package].executor": "Run",
-    "Maven.stat-service [clean].executor": "Run",
-    "Maven.stat-service [package].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main__service",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Екатерина/IdeaProjects/java-where-to-go-with-friends",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainServiceWhereToGo.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StatServerService.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.java-where-to-go-with-friends [clean...].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.java-where-to-go-with-friends [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.java-where-to-go-with-friends [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.java-where-to-go-with-friends [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.java-where-to-go-with-friends [verify].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.stat-server [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.stat-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.stat-service [package].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature__ratings&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Екатерина/IdeaProjects/java-where-to-go-with-friends/main-service/src/main/java/com/my/pet/project/where_to_go_with_friends&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Екатерина\IdeaProjects\java-where-to-go-with-friends" />
       <recent name="C:\Users\Екатерина\IdeaProjects\java-where-to-go-with-friends\main-service\src\main\java\com\my\pet\project\where_to_go_with_friends" />
+      <recent name="C:\Users\Екатерина\IdeaProjects\java-where-to-go-with-friends" />
       <recent name="C:\Users\Екатерина\IdeaProjects\java-where-to-go-with-friends\main-service\src\main\resources" />
       <recent name="C:\Users\Екатерина\IdeaProjects\java-where-to-go-with-friends\stat-service\stat-server\src\main\resources" />
       <recent name="C:\Users\Екатерина\IdeaProjects\java-where-to-go-with-friends\stat-service\stat-server\src\main\java\com\my\pet\project" />
@@ -211,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763561159617</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Разработать и добавить дополнительную функциональность &quot;Рейтинги&quot;.">
+      <option name="closed" value="true" />
+      <created>1764164302820</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1764164302820</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -266,6 +250,7 @@
     <MESSAGE value="Подготовить сборку проекта Where To Go With Friends." />
     <MESSAGE value="Реализовать сервис статистики. Реализовать HTTP-клиент для работы с сервисом статистики." />
     <MESSAGE value="Реализовать основной сервис." />
-    <option name="LAST_COMMIT_MESSAGE" value="Реализовать основной сервис." />
+    <MESSAGE value="Разработать и добавить дополнительную функциональность &quot;Рейтинги&quot;." />
+    <option name="LAST_COMMIT_MESSAGE" value="Разработать и добавить дополнительную функциональность &quot;Рейтинги&quot;." />
   </component>
 </project>

@@ -43,4 +43,6 @@ public interface EventService {
     List<Event> findEventsByIds(List<Long> eventIds);
 
     List<Event> findEventsByCategoryId(Long catId);
+
+    int calculateRating(int sumLikes, int sumDislikes);
 }

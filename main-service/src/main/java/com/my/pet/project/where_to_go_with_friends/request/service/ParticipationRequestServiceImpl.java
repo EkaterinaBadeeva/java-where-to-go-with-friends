@@ -85,6 +85,12 @@ public class ParticipationRequestServiceImpl implements ParticipationRequestServ
         return requests.stream().map(ParticipationRequestMapper::mapToParticipationRequestDto).toList();
     }
 
+    @Override
+    public ParticipationRequest findParticipationRequestByUserIdAndEventId(Long userId,Long eventId) {
+        log.info("Получение информации о заявке текущего пользователя на участие в конкректном событии.");
+        return participationRequestRepository.findByRequesterIdAndEventId(userId, eventId);
+    }
+
     private void checkId(Long id) {
         if (id == null) {
             log.warn("Id должен быть указан.");
@@ -107,7 +113,7 @@ public class ParticipationRequestServiceImpl implements ParticipationRequestServ
 
     private Event findAndCheckEvent(Long eventId, Long userId) {
 
-       Event event = eventService.findEventById(eventId);
+        Event event = eventService.findEventById(eventId);
 
         if ((event.getInitiator().getId()).equals(userId)) {
             log.warn("Инициатор события не может добавить запрос на участие в своём событии");
