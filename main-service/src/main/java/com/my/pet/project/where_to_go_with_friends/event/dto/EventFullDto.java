@@ -68,4 +68,11 @@ public class EventFullDto {
     //views — количество просмотрев события
     @Builder.Default
     Long views = 0L;
+
+    //rating — рейтинг события
+    @Builder.Default
+    int rating = 0;
+
+    //ratingInitiator — рейтинг пользователя
+    int ratingInitiator;
 }

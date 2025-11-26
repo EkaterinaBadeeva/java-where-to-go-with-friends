@@ -84,9 +84,17 @@ public class Event {
     @Column(name = "title", length = 120)
     String title;
 
-    //views — количество просмотрев события
+    //views — количество просмотров события
     @Transient
     Long views = 0L;
+
+    //rating — рейтинг события
+    @Transient
+    int rating = 0;
+
+    //ratingInitiator — рейтинг пользователя
+    @Transient
+    int ratingInitiator;
 
     @Override
     public boolean equals(Object o) {
@@ -101,6 +109,3 @@ public class Event {
         return Objects.hashCode(id);
     }
 }
-
-
-

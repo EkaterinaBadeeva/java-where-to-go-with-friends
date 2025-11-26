@@ -12,6 +12,8 @@ public interface ParticipationRequestRepository extends JpaRepository<Participat
 
     Boolean existsByRequesterIdAndEventId(Long requesterId, Long eventId);
 
+    ParticipationRequest findByRequesterIdAndEventId(Long requesterId, Long eventId);
+
     List<ParticipationRequest> findAllByEventIdAndStatus(Long eventId, ParticipationRequestStatus status);
 
     List<ParticipationRequest> findAllByEventId(Long eventId);
@@ -25,5 +27,5 @@ public interface ParticipationRequestRepository extends JpaRepository<Participat
             "WHERE r.event.id IN :eventIds AND r.status = :status " +
             "GROUP BY r.event.id")
     List<Object[]> countByEventIdInAndStatus(@Param("eventIds") List<Long> eventIds,
-                                            @Param("status") ParticipationRequestStatus state);
+                                             @Param("status") ParticipationRequestStatus state);
 }
